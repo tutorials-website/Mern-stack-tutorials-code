@@ -1,0 +1,1 @@
+export {addPassCat,fetchPassCat} from './action/passAction';
