@@ -1,24 +1,48 @@
 import React,{ useState } from 'react'
 import {connect} from 'react-redux';
-import { addPassCat} from '../redux';
-
+import { addPassCat,updatePassCat} from '../redux';
+import { Container,Row,Col,Form ,Button} from 'react-bootstrap';
+import GetPassCatContainer from './GetPassCatContainer';
 function PassCatContainer(props) {
-    const [category, setCategory] = useState('')
-   
+    const [category, setCategory] = useState('');
+
+    if(props.action==='Add'){
+var actionButton=<Button variant="primary" onClick={()=>props.addPassCat(category)}>ADD</Button>;
+    }else{
+ actionButton=<Button variant="primary" onClick={()=>props.updateCat(props.id,category)}>UPDATE</Button>;  
+    }
+
     return (
-        <div>
-            <h1>Add Password Category</h1>
-            <h1>Category - {props.category}</h1>
-         <input type="text" value={category} onChange={e=>setCategory(e.target.value)}/>
-    <button onClick={()=>props.addPassCat(category)}>ADD</button>
-        </div>
+        <Container>
+        <Row>
+        <Col>
+            <h1>{props.action} Password Category</h1>
+            <Form className="form">     
+            <h2>Category - {props.category}</h2>   
+    <p>{props.msg}</p>
+  <Form.Group controlId="formCategory">
+    <Form.Label>Enter Password Category</Form.Label>
+    <Form.Control type="text" defaultValue={props.category} onChange={e=>setCategory(e.target.value)} />
+  
+  </Form.Group>
+
+  {actionButton}
+  </Form>
+   </Col>
+   <Col>
+   <GetPassCatContainer/>
+   </Col>
+       </Row>
+        </Container>
     )
 }
 
 const mapStatetoProps=(state)=>{
  return{
     category:state.category,
-   
+    action:state.action,
+    id:state.id,
+    msg:state.msg
  }
 }
 
@@ -26,9 +50,10 @@ const mapDispatchtoProps=(dispatch)=>{
  return{
     addPassCat:function(category){
         dispatch(addPassCat(category));
-    }
-    
-      
+    },
+    updateCat:function(id,category){
+        dispatch(updatePassCat(id,category));
+    }  
  }
 }
 

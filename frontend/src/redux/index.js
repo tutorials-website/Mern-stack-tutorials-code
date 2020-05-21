@@ -1,1 +1,1 @@
-export {addPassCat,fetchPassCat} from './action/passAction';
+export {addPassCat,fetchPassCat,editPassCat,updatePassCat} from './action/passAction';

@@ -1,8 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-//import BookContainer from './components/BookContainer'
-import GetPassCatContainer from './components/GetPassCatContainer';
 import PassCatContainer from './components/PassCatContainer';
+import Header from './components/Header';
 import store from './redux/store';
 import './App.css';
 
@@ -10,8 +9,9 @@ function App() {
   return (
     <Provider store={store}>
     <div className="App">
+      <Header/>
     <PassCatContainer/>
-    <GetPassCatContainer/>
+  
     </div>
     </Provider>
   );

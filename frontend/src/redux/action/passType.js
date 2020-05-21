@@ -1,2 +1,4 @@
 export const ADD_PASSCAT='ADD_PASSCAT';
 export const FETCH_PASSCAT='FETCH_PASSCAT';
+export const EDIT_PASSCAT='EDIT_PASSCAT';
+export const UPDATE_PASSCAT='UPDATE_PASSCAT';
