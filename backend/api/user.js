@@ -28,10 +28,10 @@ router.post("/login",function(req,res,next){
                  username:user[0].username,
                  userid:user[0]._id
                 }, 
-                'secret', 
+               'secret', 
                 { 
                     
-                    expiresIn:"1h"
+                    expiresIn:"8h"
                 }
                );
                 res.status(200).json({

@@ -1,4 +1,4 @@
-import {ADD_PASSCAT,FETCH_PASSCAT,EDIT_PASSCAT,UPDATE_PASSCAT} from '../action/passType';
+import {ADD_PASSCAT,FETCH_PASSCAT,EDIT_PASSCAT,UPDATE_PASSCAT,DELETE_PASSCAT} from '../action/passType';
 const initialState={
     category:'',
     allCategories:[],
@@ -28,6 +28,12 @@ const passReducer=(state=initialState, action)=>{
             ...state,
             category:action.payload,
             msg:"Password Category Updated Successfully"
+          
+        }
+        case DELETE_PASSCAT:return{
+            ...state,
+            action:'Add',
+            msg:"Password Category Deleted Successfully"
           
         }
         default:return state;

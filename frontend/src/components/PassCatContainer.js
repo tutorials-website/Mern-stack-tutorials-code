@@ -39,10 +39,10 @@ var actionButton=<Button variant="primary" onClick={()=>props.addPassCat(categor
 
 const mapStatetoProps=(state)=>{
  return{
-    category:state.category,
-    action:state.action,
-    id:state.id,
-    msg:state.msg
+    category:state.pass.category,
+    action:state.pass.action,
+    id:state.pass.id,
+    msg:state.pass.msg
  }
 }
 
