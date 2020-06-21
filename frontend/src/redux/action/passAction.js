@@ -1,13 +1,14 @@
+
 import {ADD_PASSCAT,FETCH_PASSCAT,EDIT_PASSCAT,UPDATE_PASSCAT,DELETE_PASSCAT} from './passType';
 const axios = require('axios');
 
-export const addPassCat=(category)=>{
+
+export const addPassCat=(category,user_id)=>{
     var OPTIONS = {
         url: "http://localhost:5000/api/add-category",
         method: "POST",
-        data:{pass_cat:category},
+        data:{pass_cat:category,user_id:user_id},
         headers: {
-          Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByYWRlZXAiLCJ1c2VyaWQiOiI1ZTliNjYwYzk4NjY5MTU4ZmY3NzQ3ZjgiLCJpYXQiOjE1OTA1MTczNzksImV4cCI6MTU5MDU0NjE3OX0.LMj36aAfOhJ9ALjBdgKouiA_sOcPYtcrtJcFzidNy8o",
           "content-type": "application/json",
         },
       }
@@ -19,15 +20,14 @@ export const addPassCat=(category)=>{
     }
 }
 
-export const fetchPassCat=(allCategories)=>{
-
+export const fetchPassCat=(user_id)=>{
+  
     return function(dispatch){
-
+      
         var OPTIONS = {
-            url: "http://localhost:5000/api/getCategory",
+            url: "http://localhost:5000/api/getCategory/"+user_id,
             method: "GET",
             headers: {
-              Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByYWRlZXAiLCJ1c2VyaWQiOiI1ZTliNjYwYzk4NjY5MTU4ZmY3NzQ3ZjgiLCJpYXQiOjE1OTA1MTczNzksImV4cCI6MTU5MDU0NjE3OX0.LMj36aAfOhJ9ALjBdgKouiA_sOcPYtcrtJcFzidNy8o",
               "content-type": "application/json",
             },
           }
@@ -66,7 +66,6 @@ export const updatePassCat=(id,category)=>{
     method: "PATCH",
     data:{_id:id,pass_cat:category},
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByYWRlZXAiLCJ1c2VyaWQiOiI1ZTliNjYwYzk4NjY5MTU4ZmY3NzQ3ZjgiLCJpYXQiOjE1OTA1MTczNzksImV4cCI6MTU5MDU0NjE3OX0.LMj36aAfOhJ9ALjBdgKouiA_sOcPYtcrtJcFzidNy8o",
       "content-type": "application/json",
     },
   }
@@ -85,7 +84,6 @@ export const deletePassCat=(id)=>{
     method: "DELETE",
     data:{cat_id:id},
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByYWRlZXAiLCJ1c2VyaWQiOiI1ZTliNjYwYzk4NjY5MTU4ZmY3NzQ3ZjgiLCJpYXQiOjE1OTA1MTczNzksImV4cCI6MTU5MDU0NjE3OX0.LMj36aAfOhJ9ALjBdgKouiA_sOcPYtcrtJcFzidNy8o",
       "content-type": "application/json",
     },
   }

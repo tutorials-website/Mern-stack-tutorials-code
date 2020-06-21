@@ -13,6 +13,7 @@ function SignupContainer(props) {
     return (
         <Container>
         <Row>
+       
         <Col>
             <h1>Signup</h1>
             <Form className="form">     
@@ -36,11 +37,11 @@ function SignupContainer(props) {
     <Form.Label>Confirm Password</Form.Label>
     <Form.Control type="password" defaultValue={props.confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} />
     </Form.Group>
+    <p>Already have an account?<a href="/">Login Here</a></p>
   <Button variant="primary" onClick={()=>props.signupUser(username,email,password,confirmPassword)}>SIGNUP</Button>
   </Form>
    </Col>
-   <Col>
-   </Col>
+   <Col></Col>
        </Row>
         </Container>
     )

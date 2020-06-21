@@ -23,6 +23,9 @@ var userSchema =new mongoose.Schema({
         type:String, 
         required: true
     },
+    profileImage:{
+        type:String,
+    },
     date:{
         type: Date, 
         default: Date.now }

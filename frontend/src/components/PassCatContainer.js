@@ -6,17 +6,18 @@ import GetPassCatContainer from './GetPassCatContainer';
 function PassCatContainer(props) {
     const [category, setCategory] = useState('');
 
+    
     if(props.action==='Add'){
-var actionButton=<Button variant="primary" onClick={()=>props.addPassCat(category)}>ADD</Button>;
+var actionButton=<Button variant="primary" onClick={()=>props.addPassCat(category,props.user_id)}>ADD</Button>;
     }else{
- actionButton=<Button variant="primary" onClick={()=>props.updateCat(props.id,category)}>UPDATE</Button>;  
+ actionButton=<Button variant="primary" onClick={()=>props.updateCat(props.id,category,props.user_id)}>UPDATE</Button>;  
     }
 
     return (
         <Container>
         <Row>
         <Col>
-            <h1>{props.action} Password Category</h1>
+    <h1>{props.action} Password Category </h1>
             <Form className="form">     
             <h2>Category - {props.category}</h2>   
     <p>{props.msg}</p>
@@ -42,17 +43,18 @@ const mapStatetoProps=(state)=>{
     category:state.pass.category,
     action:state.pass.action,
     id:state.pass.id,
+    user_id:state.user.userDetails.userid,
     msg:state.pass.msg
  }
 }
 
 const mapDispatchtoProps=(dispatch)=>{
  return{
-    addPassCat:function(category){
-        dispatch(addPassCat(category));
+    addPassCat:function(category,user_id){
+        dispatch(addPassCat(category,user_id));
     },
-    updateCat:function(id,category){
-        dispatch(updatePassCat(id,category));
+    updateCat:function(id,category,user_id){
+        dispatch(updatePassCat(id,category,user_id));
     }  
  }
 }

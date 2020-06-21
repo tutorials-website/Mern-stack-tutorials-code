@@ -4,13 +4,14 @@ import {fetchPassCat,editPassCat,deletePassCat} from '../redux';
 import { Table,Button } from 'react-bootstrap';
 
 function GetPassCatContainer(props) {
-    
+    const user_id=useSelector(state=>state.user.userDetails.userid);
     const dispatch=useDispatch();
     useEffect(()=>{
-        dispatch(fetchPassCat())
+        dispatch(fetchPassCat(user_id))
     });
     const allCategories=useSelector(state=>state.pass.allCategories);
-//console.log(allCategories);
+ 
+//console.log(userDetails);
 if(allCategories){
     var CatData=allCategories.map((val,i)=>(
         <tr key={i}>

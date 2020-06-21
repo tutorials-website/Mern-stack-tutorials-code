@@ -6,10 +6,11 @@ mongoose.connect(dburl, {useNewUrlParser: true, useCreateIndex: true,});var conn
 var passcatSchema =new mongoose.Schema({
     password_category: {type:String, 
         required: true,
-        index: {
-            unique: true,        
-        }},
-
+        },
+  user_id:{
+      type:String,
+      required:true
+  },
     date:{
         type: Date, 
         default: Date.now }

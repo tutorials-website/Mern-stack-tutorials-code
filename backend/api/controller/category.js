@@ -1,9 +1,12 @@
 var passCatModel = require('../../modules/password_category');
 var passModel = require('../../modules/add_password');
-var getPassCat= passCatModel.find({},{'password_category':1,'_id':1});
+
 const mongoose = require('mongoose');
 
 exports.getCategory=function(req,res,next){
+
+    var id=req.params.userid;
+    var getPassCat= passCatModel.find({user_id:id},{'password_category':1,'_id':1});
     getPassCat.exec()
     .then(data=>{
         res.status(200).json({
@@ -21,9 +24,11 @@ exports.getCategory=function(req,res,next){
     // add category controller
 
     exports.addCategory=function(req,res,next){
+       
         var passCategory=req.body.pass_cat;
-        
-        var passCatDetails=new passCatModel({password_category:passCategory});
+        var user_id=req.body.user_id;
+
+        var passCatDetails=new passCatModel({password_category:passCategory,user_id:user_id});
         passCatDetails.save()
         .then(doc=>{
             res.status(201).json({

@@ -1,7 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import { Link,Route } from "react-router-dom";
 import { Navbar,Nav,NavDropdown } from 'react-bootstrap';
+import {logout} from "../redux/action/userAction";
+import UserProfile from "./UserProfile";
 
-function Header() {
+
+function Header(props) {
     
   
     return (
@@ -11,20 +16,41 @@ function Header() {
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <NavDropdown title="Category" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#">Add New Password Category</NavDropdown.Item>
-        <NavDropdown.Item href="#">View All Passwrd Category</NavDropdown.Item>
-      </NavDropdown>
+      <Link to="/" className="nav-link">Home</Link>
+      <Link to="/" className="nav-link">Password Category</Link>
+    
       <NavDropdown title="Passowrd" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#">Add New Password</NavDropdown.Item>
-        <NavDropdown.Item href="#">View All Passwrd</NavDropdown.Item>
+      <Link to="#" className="dropdown-item" role="button">Add New Password</Link>
+      <Link to="#" className="dropdown-item" role="button">View All Passwrd</Link>
       </NavDropdown>
-    </Nav>
+
+      <NavDropdown title={props.userDetails.username} id="basic-nav-dropdown">
+      <Link to="/userprofile" className="dropdown-item" role="button">View Profile</Link>
+      <Link to="#" onClick={()=>props.logoutUser()} className="dropdown-item" role="button">Logout</Link>
+      </NavDropdown>
+        
+    </Nav> 
     
   </Navbar.Collapse>
 </Navbar>
+      <Route path="/userprofile" component={UserProfile}/>
         </div>
     )
 }
-export default Header;
+
+const mapStatetoProps=(state)=>{
+  return{
+     userDetails:state.user.userDetails,
+  }
+ }
+
+ const mapDispatchtoProps=(dispatch)=>{
+  return{
+     
+     logoutUser:function(){
+      dispatch(logout());
+  },
+     
+  }
+ }
+export default connect(mapStatetoProps,mapDispatchtoProps)(Header);

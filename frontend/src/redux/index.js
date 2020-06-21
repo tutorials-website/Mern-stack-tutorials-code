@@ -1,2 +1,2 @@
 export {addPassCat,fetchPassCat,editPassCat,updatePassCat,deletePassCat} from './action/passAction';
-export {signupUser} from './action/userAction';
+export {signupUser,loginUser,setCurrentUser,logout} from './action/userAction';

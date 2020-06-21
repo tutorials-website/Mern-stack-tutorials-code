@@ -11,7 +11,7 @@ const passwordController=require('./controller/password');
 router.get("/", function(req,res,next){
 res.send('hello api');
 });
-router.get("/getCategory",checkAuth,categoryController.getCategory);
+router.get("/getCategory/:userid",checkAuth,categoryController.getCategory);
 
 // Add New Category Route
 router.post("/add-category",checkAuth,categoryController.addCategory);
